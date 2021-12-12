@@ -29,21 +29,37 @@ mongoose.connect('mongodb://localhost/testdb', () => {
 //     await user.save()
 //     console.log(user);
 // }
-const run = async () => {
-    // creating a bit more complicated user
-    try {
-        const user = await User.create({
-        name: 'John',
-        age: 20,
-        email: "zi@test.COM",
-        hobbies: ['Sports', 'Cooking'],
-        address: {
-            street: 'Main St',
-            city: 'Boston',
-        }
-    });
+// const run = async () => {
+//     // creating a bit more complicated user
+//     try {
+//         const user = await User.create({
+//         name: 'John',
+//         age: 20,
+//         email: "zi@test.COM",
+//         hobbies: ['Sports', 'Cooking'],
+//         address: {
+//             street: 'Main St',
+//             city: 'Boston',
+//         }
+//     });
 
-        await user.save()
+//         await user.save()
+//         console.log(user);
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+
+
+// }
+
+const run = async () => {
+    // Query Basics
+    // populate adds that data to the user
+    try {
+        const user = await User.where("age").gt(19).where("name").equals("John").populate("bestFriend").limit(1)
+        // user[0].bestFriend = "61b60e142623d89fabf6796c"
+        // user[0].email = "hello@gmail.com"
+        // user[0].save()
         console.log(user);
     } catch (error) {
         console.log(error.message);
