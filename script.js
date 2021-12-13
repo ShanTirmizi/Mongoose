@@ -52,20 +52,40 @@ mongoose.connect('mongodb://localhost/testdb', () => {
 
 // }
 
+// const run = async () => {
+//     // Query Basics
+//     // populate adds that data to the user
+//     try {
+//         const user = await User.where("age").gt(19).where("name").equals("John").populate("bestFriend").limit(1)
+//         // user[0].bestFriend = "61b60e142623d89fabf6796c"
+//         // user[0].email = "hello@gmail.com"
+//         // user[0].save()
+//         console.log(user);
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
+
 const run = async () => {
-    // Query Basics
-    // populate adds that data to the user
+    // Schema methods and virtauls
     try {
-        const user = await User.where("age").gt(19).where("name").equals("John").populate("bestFriend").limit(1)
-        // user[0].bestFriend = "61b60e142623d89fabf6796c"
-        // user[0].email = "hello@gmail.com"
-        // user[0].save()
+        // const user = await User.findOne({ name: 'John' });
+        // user.sayHi();
+
+        // Stactic methods
+        // const user = await User.findByName('John');
+
+
+        // Query methods
+        // const user = await User.find().byName("John")
+
+        //Virtuals methods
+        const user = await User.findOne({ name: 'John' });
+        console.log(user.namedEmail)
         console.log(user);
     } catch (error) {
         console.log(error.message);
     }
-
-
 }
 
 

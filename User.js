@@ -51,4 +51,27 @@ const userSchema = new mongoose.Schema({
     address: addressSchema
 })
 
+// creating a method for each instance of out userSchema
+
+userSchema.methods.sayHi = function() {
+    console.log(`Hello ${this.name}`)
+}
+
+// static method
+// this creates our own find method
+userSchema.statics.findByName = function(name) {
+    // regex makes it case insensitive
+    return this.find({name: new RegExp(name, 'i')})
+}
+
+// adding stuff to querys 
+userSchema.query.byName = function(name) {
+    return this.where({name: new RegExp(name, 'i')})
+}
+
+// Virtaul -- Dosnt get saved in the database
+userSchema.virtual("namedEmail").get(function() {
+    return `${this.name} <${this.email}>`
+})
+
 module.exports = mongoose.model('User', userSchema);
