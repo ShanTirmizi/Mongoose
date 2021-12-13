@@ -66,22 +66,35 @@ mongoose.connect('mongodb://localhost/testdb', () => {
 //     }
 // }
 
+// const run = async () => {
+//     // Schema methods and virtauls
+//     try {
+//         // const user = await User.findOne({ name: 'John' });
+//         // user.sayHi();
+
+//         // Stactic methods
+//         // const user = await User.findByName('John');
+
+
+//         // Query methods
+//         // const user = await User.find().byName("John")
+
+//         //Virtuals methods
+//         const user = await User.findOne({ name: 'John' });
+//         console.log(user.namedEmail)
+//         console.log(user);
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
+
+
 const run = async () => {
-    // Schema methods and virtauls
+    //Schema Middleware
     try {
-        // const user = await User.findOne({ name: 'John' });
-        // user.sayHi();
-
-        // Stactic methods
-        // const user = await User.findByName('John');
-
-
-        // Query methods
-        // const user = await User.find().byName("John")
-
-        //Virtuals methods
         const user = await User.findOne({ name: 'John' });
-        console.log(user.namedEmail)
+        console.log(user);
+        await user.save();
         console.log(user);
     } catch (error) {
         console.log(error.message);

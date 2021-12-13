@@ -74,4 +74,21 @@ userSchema.virtual("namedEmail").get(function() {
     return `${this.name} <${this.email}>`
 })
 
+// Middleware
+    // do something before saving
+userSchema.pre('save', function(next) {
+    // console.log('pre save')
+    this.updatedAt = Date.now()
+    next()
+})
+
+    // do something after saving
+    // doc is the document that was just saved
+userSchema.post('save', function(doc, next) {
+    // console.log('post save')
+    doc.sayHi()
+    next()
+})
+
+
 module.exports = mongoose.model('User', userSchema);
